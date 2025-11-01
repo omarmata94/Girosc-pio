@@ -1,0 +1,11 @@
+<h2>Grados: <span id="grados">0</span>°</h2>
+<script>
+if (window.DeviceOrientationEvent) {
+  window.addEventListener("deviceorientation", function(evento) {
+    var alfa = Math.round(evento.alpha);
+    document.getElementById("grados").textContent = alfa;
+  });
+} else {
+  document.body.textContent = "Tu dispositivo no soporta orientación.";
+}
+</script>
