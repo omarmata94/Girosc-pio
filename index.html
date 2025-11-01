@@ -1,23 +1,29 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brújula simple</title>
 </head>
 <body>
-    <h2>Grados: <span id="grados">0</span>°</h2>
-<script>
-if (window.DeviceOrientationEvent) {
-  window.addEventListener("deviceorientation", function(evento) {
-    var alfa = Math.round(evento.alpha);
-    document.getElementById("grados").textContent = alfa;
-  });
-} else {
-  document.body.textContent = "Tu dispositivo no soporta orientación.";
-}
-</script>
+  <h1>🧭 Brújula</h1>
+  <h2>Grados: <span id="grados">0</span>°</h2>
+  <div id="flecha" style="font-size:80px;">➤</div>
+
+  <script>
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener("deviceorientation", function(evento) {
+        var alfa = evento.alpha;
+        if (alfa !== null) {
+          var grados = Math.round(alfa);
+          document.getElementById("grados").textContent = grados;
+          document.getElementById("flecha").style.transform = "rotate(" + grados + "deg)";
+        }
+      });
+    } else {
+      document.body.innerHTML = "<h3>Tu dispositivo no soporta esta función</h3>";
+    }
+  </script>
 </body>
 </html>
 
